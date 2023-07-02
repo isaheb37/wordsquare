@@ -11,12 +11,12 @@ public class Generate {
     private int length = 4;
     private boolean shuffle = true;
     private int attempts = 1;
-    private final int maxLimit = 500;
 
-    public List<String> generate(String strSequence, Integer len, Boolean shuffle) throws Exception {
+    public List<String> generate(String letters, Integer length, Integer maxAttempts, Boolean shuffle) throws Exception {
         List<String> words = new ArrayList<>();
-        letters = strSequence;
-        length = len;
+        this.letters = letters;
+        this.length = length;
+
         String strSortedOriginal = "";
         try {
             // Read words from file
@@ -24,7 +24,7 @@ public class Generate {
             Scanner myReader = new Scanner(myObj);
 
             //Get sorted sequence of letters to use
-            String strSorted = getLetters(strSequence);
+            String strSorted = getLetters(letters);
             strSortedOriginal = strSorted;
             //System.out.println("Letters to use: " + strSorted);
             int charPos = 0;
@@ -45,7 +45,6 @@ public class Generate {
                     }
                     if(!found) {
                         words.add(data);
-                        found = false;
                     }
                     strSorted = strSortedOriginal;
                     charPos = 0;
@@ -97,9 +96,9 @@ public class Generate {
         }
 
         // Randomizes the order to allow a different possible traversal of the words.
-        if(tempStack.size() != length && attempts <= maxLimit) {
+        if(tempStack.size() != length && attempts <= maxAttempts) {
             shuffle = true;
-            generate(letters, length, shuffle);
+            generate(letters, length, maxAttempts, shuffle);
         } else {
             System.out.println("-------------");
             for(String entry : tempStack) {

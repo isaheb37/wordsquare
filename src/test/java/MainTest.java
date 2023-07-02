@@ -21,14 +21,14 @@ public class MainTest {
 
     @Test
     public void testGenerateSuccessGrid1() throws Exception {
-        List<String> actual = testObj.generate("aaccdeeeemmnnnoo", 4, true);
+        List<String> actual = testObj.generate("aaccdeeeemmnnnoo", 4, 500, true);
         Assert.assertNotNull(actual);
         Assert.assertTrue(actual.size() > 0);
     }
 
     @Test
     public void testGenerateSuccessGrid2() throws Exception {
-        List<String> actual = testObj.generate("eeeeddoonnnsssrv", 4, true);
+        List<String> actual = testObj.generate("eeeeddoonnnsssrv", 4, 500, true);
         Assert.assertNotNull(actual);
         Assert.assertTrue(actual.size() > 0);
     }
